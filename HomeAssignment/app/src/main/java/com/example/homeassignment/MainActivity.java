@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -76,19 +75,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_popularMovies) {
-            startActivity(new Intent(this,MoviesActivity.class));
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
 
     public class GetMovies extends AsyncTask<Void,Void,Void> {
 
@@ -151,5 +137,23 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+        protected void onPostExecute (Void result)
+        {
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            int id = menuItem.getItemId();
+                            if (id == R.id.nav_popularMovies) {
+                                Intent MOVIE = new Intent(getApplicationContext(), MoviesActivity.class);
+                                startActivity(MOVIE);
+                            }
+                            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                            return true;
+                        }
+                    });
+        }
     }
+
 }
