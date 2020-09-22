@@ -1,4 +1,4 @@
-package com.example.homeassignment.ui.gallery;
+package com.example.homeassignment.ui.PopularMovies;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,19 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.homeassignment.R;
 
-public class GalleryFragment extends Fragment {
+import static com.example.homeassignment.R.id.text_Movies;
 
-    private GalleryViewModel galleryViewModel;
+public class PopularMoviesFragment extends Fragment {
+
+    private PopularMoviesViewModel PoplarMoviesModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        PoplarMoviesModel =
+                ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+        final TextView textView = root.findViewById(text_Movies);
+        PoplarMoviesModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
