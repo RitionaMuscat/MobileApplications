@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     ArrayList<HashMap<String, String>> MovieList = new ArrayList<HashMap<String, String>>();
     HashMap<String, String> Movies = new HashMap<>();
+    public static  ArrayList<String> titleArr = new ArrayList<String>();
+    public static   HashMap<String, String> MovieTitle = new HashMap<>();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         String overview = c.getString("overview");
                         String release_date = c.getString("release_date");
 
+
                         Movies.put("popularity",popularity);
                         Movies.put("vote_count",vote_count);
                         Movies.put("video",video);
@@ -129,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
                         Movies.put("release_date",release_date);
 
                         MovieList.add(Movies);
+
+                        MovieTitle.put("title",title);
+                        titleArr.add(MovieTitle.get("title"));
+                        Log.e("TAG", "Response from MovieTitle in main: " + MovieTitle.get("title"));
+                     Log.e("TAG", "Response from MovieTitle in main: " + titleArr);
+
+
 
                     }
                 } catch ( JSONException e) {
@@ -146,13 +159,16 @@ public class MainActivity extends AppCompatActivity {
                         public boolean onNavigationItemSelected(MenuItem menuItem) {
                             int id = menuItem.getItemId();
                             if (id == R.id.nav_popularMovies) {
-                                Intent MOVIE = new Intent(getApplicationContext(), MoviesActivity.class);
-                                startActivity(MOVIE);
+                                 Intent MOVIE = new Intent(getApplicationContext(), MoviesActivity.class);
+                                 MOVIE.putStringArrayListExtra("titleArr", titleArr);
+                                 startActivity(MOVIE);
+
                             }
                             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                             return true;
                         }
                     });
+
         }
     }
 
