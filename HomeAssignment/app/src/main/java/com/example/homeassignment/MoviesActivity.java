@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -39,6 +40,7 @@ public class MoviesActivity extends AppCompatActivity {
     ArrayList<String> voteAvgArr = new ArrayList<String>();
     ArrayList<String> overViewArr = new ArrayList<String>();
     ArrayList<String> releaseDateArr = new ArrayList<String>();
+    ArrayList<String> FavouritesArr = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +53,19 @@ public class MoviesActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        MoviesNames   = i.getStringArrayListExtra("titleArr");
-        popularityArr   = i.getStringArrayListExtra("popularityArr");
-        voteCountArr  = i.getStringArrayListExtra("voteCountArr");
-        videoArr      = i.getStringArrayListExtra("videoArr");
-        posterArr     = i.getStringArrayListExtra("posterArr");
-        idArr         = i.getStringArrayListExtra("idArr");
-        adultArr      = i.getStringArrayListExtra("adultArr");
-        backdropArr   = i.getStringArrayListExtra("backdropArr");
-        languageArr   = i.getStringArrayListExtra("languageArr");
-        origTitleArr  = i.getStringArrayListExtra("origTitleArr");
-        voteAvgArr    = i.getStringArrayListExtra("voteAvgArr");
-        overViewArr   = i.getStringArrayListExtra("overViewArr");
-        releaseDateArr   = i.getStringArrayListExtra("releaseDateArr");
+        MoviesNames = i.getStringArrayListExtra("titleArr");
+        popularityArr = i.getStringArrayListExtra("popularityArr");
+        voteCountArr = i.getStringArrayListExtra("voteCountArr");
+        videoArr = i.getStringArrayListExtra("videoArr");
+        posterArr = i.getStringArrayListExtra("posterArr");
+        idArr = i.getStringArrayListExtra("idArr");
+        adultArr = i.getStringArrayListExtra("adultArr");
+        backdropArr = i.getStringArrayListExtra("backdropArr");
+        languageArr = i.getStringArrayListExtra("languageArr");
+        origTitleArr = i.getStringArrayListExtra("origTitleArr");
+        voteAvgArr = i.getStringArrayListExtra("voteAvgArr");
+        overViewArr = i.getStringArrayListExtra("overViewArr");
+        releaseDateArr = i.getStringArrayListExtra("releaseDateArr");
 
 
         Log.e("TAG", "Response from popularityArr: " + popularityArr);
@@ -77,8 +79,7 @@ public class MoviesActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedMovie = spnMovC.getSelectedItem().toString();
                 movieIndex = MoviesNames.indexOf(selectedMovie);
-                if(MoviesNames.contains(selectedMovie))
-                {
+                if (MoviesNames.contains(selectedMovie)) {
                     TextView Popularity;
                     Popularity = findViewById(R.id.popularity);
                     Popularity.setText("Popularity: " + popularityArr.get(movieIndex));
@@ -109,7 +110,7 @@ public class MoviesActivity extends AppCompatActivity {
 
                     TextView origTitle;
                     origTitle = findViewById(R.id.origTitle);
-                    origTitle.setText("Original Title: "+origTitleArr.get(movieIndex));
+                    origTitle.setText("Original Title: " + origTitleArr.get(movieIndex));
 
                     TextView video;
                     video = findViewById(R.id.video);
@@ -119,14 +120,28 @@ public class MoviesActivity extends AppCompatActivity {
                     poster = findViewById(R.id.poster);
                     poster.setText("Poster: " + posterArr.get(movieIndex));
                 }
-}
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-    }
 
+        Button btnFavourite;
+        btnFavourite = findViewById(R.id.favouritesBTN);
+        btnFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FavouritesArr.size() ==0)
+                {
+                    FavouritesArr.add(popularityArr.get(movieIndex));
+                    FavouritesArr.add(popularityArr.get(movieIndex));
+                    FavouritesArr.add(adultArr.get(movieIndex));
+                }
+            }
+        });
+
+    }
 }
 
