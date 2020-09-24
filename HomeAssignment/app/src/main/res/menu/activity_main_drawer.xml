@@ -20,5 +20,9 @@
             android:id="@+id/nav_popularMovies"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Popular Movies" />
+        <item
+            android:id="@+id/nav_FavouriteMovies"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Favourite Movies" />
     </group>
 </menu>

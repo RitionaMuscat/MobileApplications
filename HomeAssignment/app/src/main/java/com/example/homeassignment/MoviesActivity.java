@@ -1,6 +1,7 @@
 package com.example.homeassignment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,6 +40,11 @@ public class MoviesActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> FavouritesArr = new ArrayList<HashMap<String, String>>();
 
     HashMap<String, String> Movies = new HashMap<>();
+
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("favouriteMovie");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +152,9 @@ public class MoviesActivity extends AppCompatActivity {
                 Movies.put("release_date", releaseDateArr.get(movieIndex));
 
                 FavouritesArr.add(Movies);
+
+
+
                 Log.e("TAG", "Response from popularityArr: " + FavouritesArr);
             }
 
