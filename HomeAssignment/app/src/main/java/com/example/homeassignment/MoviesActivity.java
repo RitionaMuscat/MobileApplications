@@ -1,27 +1,19 @@
 package com.example.homeassignment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class MoviesActivity extends AppCompatActivity {
     String selectedMovie = "";
@@ -40,7 +32,9 @@ public class MoviesActivity extends AppCompatActivity {
     ArrayList<String> voteAvgArr = new ArrayList<String>();
     ArrayList<String> overViewArr = new ArrayList<String>();
     ArrayList<String> releaseDateArr = new ArrayList<String>();
-    ArrayList<String> FavouritesArr = new ArrayList<String>();
+    ArrayList<HashMap<String, String>> FavouritesArr = new ArrayList<HashMap<String, String>>();
+
+    HashMap<String, String> Movies = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,13 +127,24 @@ public class MoviesActivity extends AppCompatActivity {
         btnFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(FavouritesArr.size() ==0)
-                {
-                    FavouritesArr.add(popularityArr.get(movieIndex));
-                    FavouritesArr.add(popularityArr.get(movieIndex));
-                    FavouritesArr.add(adultArr.get(movieIndex));
-                }
+
+                Movies.put("popularity", popularityArr.get(movieIndex));
+                Movies.put("vote_count", voteCountArr.get(movieIndex));
+                Movies.put("video", videoArr.get(movieIndex));
+                Movies.put("poster_path", posterArr.get(movieIndex));
+                Movies.put("adult", adultArr.get(movieIndex));
+                Movies.put("backdrop_path", backdropArr.get(movieIndex));
+                Movies.put("original_language", languageArr.get(movieIndex));
+                Movies.put("original_title", origTitleArr.get(movieIndex));
+                Movies.put("title", selectedMovie);
+                Movies.put("vote_average", voteAvgArr.get(movieIndex));
+                Movies.put("overview", overViewArr.get(movieIndex));
+                Movies.put("release_date", releaseDateArr.get(movieIndex));
+
+                FavouritesArr.add(Movies);
+                Log.e("TAG", "Response from popularityArr: " + FavouritesArr);
             }
+
         });
 
     }
