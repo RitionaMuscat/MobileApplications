@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -80,39 +81,43 @@ public class MoviesActivity extends AppCompatActivity {
                 {
                     TextView Popularity;
                     Popularity = findViewById(R.id.popularity);
-                    Popularity.setText(popularityArr.get(movieIndex));
+                    Popularity.setText("Popularity: " + popularityArr.get(movieIndex));
+
+                    TextView adult;
+                    adult = findViewById(R.id.adult);
+                    adult.setText("Adult: " + adultArr.get(movieIndex));
 
                     TextView vote;
                     vote = findViewById(R.id.vote);
-                    vote.setText(voteAvgArr.get(movieIndex));
+                    vote.setText("Average Vote: " + voteAvgArr.get(movieIndex));
 
                     TextView voteC;
                     voteC = findViewById(R.id.voteC);
-                    voteC.setText(voteCountArr.get(movieIndex));
+                    voteC.setText("Vote: " + voteCountArr.get(movieIndex));
 
                     TextView overView;
                     overView = findViewById(R.id.OverView);
-                    overView.setText(overViewArr.get(movieIndex));
+                    overView.setText("Overview: " + overViewArr.get(movieIndex));
 
                     TextView backdrop;
                     backdrop = findViewById(R.id.backdrop);
-                    backdrop.setText(backdropArr.get(movieIndex));
+                    backdrop.setText("Back drop: " + backdropArr.get(movieIndex));
 
                     TextView language;
                     language = findViewById(R.id.language);
-                    language.setText(languageArr.get(movieIndex));
+                    language.setText("Language: " + languageArr.get(movieIndex));
 
                     TextView origTitle;
                     origTitle = findViewById(R.id.origTitle);
-                    origTitle.setText(origTitleArr.get(movieIndex));
+                    origTitle.setText("Original Title: "+origTitleArr.get(movieIndex));
 
                     TextView video;
                     video = findViewById(R.id.video);
-                    video.setText(videoArr.get(movieIndex));
+                    video.setText("Video: " + videoArr.get(movieIndex));
 
                     TextView poster;
                     poster = findViewById(R.id.poster);
-                    poster.setText(posterArr.get(movieIndex));
+                    poster.setText("Poster: " + posterArr.get(movieIndex));
                 }
 }
 

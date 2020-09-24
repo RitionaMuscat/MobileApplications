@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
                         MovieList.add(Movies);
 
-
                         titleArr.add(Movies.get("title"));
                         popularityArr.add(Movies.get("popularity"));
                         voteCountArr.add(Movies.get("vote_count"));
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                         overViewArr.add(Movies.get("overview"));
                         releaseDateArr.add(Movies.get("release_date"));
                         videoArr.add(Movies.get("video"));
-
 
 
                     }
