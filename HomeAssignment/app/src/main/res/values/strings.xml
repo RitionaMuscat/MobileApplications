@@ -17,4 +17,16 @@
     <string name="title_activity_movie22">Movie2Activity2</string>
     <string name="title_activity_test">testActivity</string>
     <string name="title_activity_m">M</string>
+    <string name="server_client_id">805220540107-ui3di5an1d0f1rj0gilpb7duq958ksfr.apps.googleusercontent.com</string>
+
+    <!-- Sign-in status messages -->
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_in">Signed in</string>
+    <string name="signing_in">Signing inâ€¦</string>
+    <string name="signed_out">Signed out</string>
+    <string name="signed_in_err">"Error: please check logs."</string>
+
+    <string name="sign_out">Sign Out</string>
+
+
 </resources>

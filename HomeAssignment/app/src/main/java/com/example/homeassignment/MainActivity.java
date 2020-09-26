@@ -196,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(MOVIE);
 
                             }
+                            else if (id== R.id.nav_login)
+                            {
+                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(login);
+                            }
                             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                             return true;
                         }

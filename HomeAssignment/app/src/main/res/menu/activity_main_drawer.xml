@@ -21,8 +21,8 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Popular Movies" />
         <item
-            android:id="@+id/nav_FavouriteMovies"
+            android:id="@+id/nav_login"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Favourite Movies" />
+            android:title="Login" />
     </group>
 </menu>
