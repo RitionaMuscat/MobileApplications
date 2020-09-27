@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -205,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                     });
+
+
+
 
         }
     }

@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -79,6 +80,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Log.w(TAG, "1. " + account.getDisplayName());
+            TextView txt = findViewById(R.id.text_home);
+            txt.setText(account.getDisplayName());
+
             // Signed in successfully, show authenticated UI.
             updateUI(account);
         } catch (ApiException e) {
@@ -96,9 +101,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    GoogleSignInAccount account;
+
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         updateUI(null);
+                        TextView txt = findViewById(R.id.text_home);
+                        txt.setText("Signed out");
                     }
                 });
     }
