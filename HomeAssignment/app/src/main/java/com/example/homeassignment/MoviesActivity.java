@@ -184,6 +184,6 @@ public class MoviesActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    
+
 }
 
