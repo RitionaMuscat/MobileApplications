@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -147,6 +149,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.disconnect_button:
                 revokeAccess();
                 break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_login);
+        menuItem.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+
+        switch (item.getItemId()) {
+            case R.id.action_movies:
+                Intent i = new Intent(getApplicationContext(), MoviesActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_Home:
+                Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i1);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

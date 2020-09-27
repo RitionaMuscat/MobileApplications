@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> MovieList = new ArrayList<HashMap<String, String>>();
 
-
     public static ArrayList<String> titleArr = new ArrayList<String>();
     public static ArrayList<String> popularityArr = new ArrayList<String>();
     public static ArrayList<String> voteCountArr = new ArrayList<String>();
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
 
     HashMap<String, String> Movies = new HashMap<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +80,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_login:
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_Home:
+                Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i1);
+                return true;
+            case R.id.action_movies:
+                Intent MOVIE = new Intent(getApplicationContext(), MoviesActivity.class);
+                MOVIE.putStringArrayListExtra("titleArr", titleArr);
+                MOVIE.putStringArrayListExtra("popularityArr", popularityArr);
+                MOVIE.putStringArrayListExtra("voteCountArr", voteCountArr);
+                MOVIE.putStringArrayListExtra("posterArr", posterArr);
+                MOVIE.putStringArrayListExtra("idArr", idArr);
+                MOVIE.putStringArrayListExtra("adultArr", adultArr);
+                MOVIE.putStringArrayListExtra("backdropArr", backdropArr);
+                MOVIE.putStringArrayListExtra("languageArr", languageArr);
+                MOVIE.putStringArrayListExtra("origTitleArr", origTitleArr);
+                MOVIE.putStringArrayListExtra("voteAvgArr", voteAvgArr);
+                MOVIE.putStringArrayListExtra("overViewArr", overViewArr);
+                MOVIE.putStringArrayListExtra("releaseDateArr", releaseDateArr);
+                MOVIE.putStringArrayListExtra("videoArr", videoArr);
+                startActivity(MOVIE);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_Home);
+        menuItem.setVisible(false);
         return true;
     }
 
@@ -96,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class GetMovies extends AsyncTask<Void, Void, Void> {
-
         protected void onPreExecute() {
             super.onPreExecute();
             Toast.makeText(MainActivity.this, "Json Data is downloading", Toast.LENGTH_LONG).show();
@@ -132,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                         String overview = c.getString("overview");
                         String release_date = c.getString("release_date");
 
-
                         Movies.put("popularity", popularity);
                         Movies.put("vote_count", vote_count);
                         Movies.put("video", video);
@@ -162,8 +194,6 @@ public class MainActivity extends AppCompatActivity {
                         overViewArr.add(Movies.get("overview"));
                         releaseDateArr.add(Movies.get("release_date"));
                         videoArr.add(Movies.get("video"));
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -196,9 +226,7 @@ public class MainActivity extends AppCompatActivity {
                                 MOVIE.putStringArrayListExtra("videoArr", videoArr);
                                 startActivity(MOVIE);
 
-                            }
-                            else if (id== R.id.nav_login)
-                            {
+                            } else if (id == R.id.nav_login) {
                                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(login);
                             }
@@ -206,10 +234,6 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                     });
-
-
-
-
         }
     }
 

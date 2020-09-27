@@ -1,9 +1,10 @@
 package com.example.homeassignment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,7 +70,6 @@ public class MoviesActivity extends AppCompatActivity {
         voteAvgArr = i.getStringArrayListExtra("voteAvgArr");
         overViewArr = i.getStringArrayListExtra("overViewArr");
         releaseDateArr = i.getStringArrayListExtra("releaseDateArr");
-
 
         Log.e("TAG", "Response from popularityArr: " + popularityArr);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, MoviesNames);
@@ -153,13 +152,38 @@ public class MoviesActivity extends AppCompatActivity {
 
                 FavouritesArr.add(Movies);
 
-
-
                 Log.e("TAG", "Response from popularityArr: " + FavouritesArr);
             }
 
         });
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_movies);
+        menuItem.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+
+        switch (item.getItemId()) {
+            case R.id.action_login:
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_Home:
+                Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i1);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
 }
 
