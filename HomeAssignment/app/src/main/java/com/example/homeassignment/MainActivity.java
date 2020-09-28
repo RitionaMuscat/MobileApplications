@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery)
+                R.id.nav_home)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 MOVIE.putStringArrayListExtra("releaseDateArr", releaseDateArr);
                 MOVIE.putStringArrayListExtra("videoArr", videoArr);
                 startActivity(MOVIE);
+                return true;
+            case R.id.action_search:
+                Intent i3 = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(i3);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -229,6 +233,11 @@ public class MainActivity extends AppCompatActivity {
                             } else if (id == R.id.nav_login) {
                                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(login);
+                            }
+                            else if (id == R.id.nav_search)
+                            {
+                                Intent search = new Intent(getApplicationContext(), SearchActivity.class);
+                                startActivity(search);
                             }
                             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                             return true;

@@ -176,6 +176,10 @@ public class MoviesActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
                 return true;
+            case R.id.action_search:
+                Intent i3 = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(i3);
+                return true;
             case R.id.action_Home:
                 Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i1);
