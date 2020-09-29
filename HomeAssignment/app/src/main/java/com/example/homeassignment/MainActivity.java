@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> voteAvgArr = new ArrayList<String>();
     public static ArrayList<String> overViewArr = new ArrayList<String>();
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
-
     HashMap<String, String> Movies = new HashMap<>();
 
     @Override

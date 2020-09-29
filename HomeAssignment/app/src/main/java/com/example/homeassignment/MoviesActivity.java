@@ -119,9 +119,9 @@ public class MoviesActivity extends AppCompatActivity {
                     video = findViewById(R.id.video);
                     video.setText("Video: " + videoArr.get(movieIndex));
 
-                    TextView poster;
+/*                    TextView poster;
                     poster = findViewById(R.id.poster);
-                    poster.setText("Poster: " + posterArr.get(movieIndex));
+                    poster.setText("Poster: " + posterArr.get(movieIndex));*/
                 }
             }
 
@@ -131,7 +131,7 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
 
-        Button btnFavourite;
+/*        Button btnFavourite;
         btnFavourite = findViewById(R.id.favouritesBTN);
         btnFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +155,7 @@ public class MoviesActivity extends AppCompatActivity {
                 Log.e("TAG", "Response from popularityArr: " + FavouritesArr);
             }
 
-        });
+        });*/
     }
 
     @Override

@@ -3,9 +3,14 @@ package com.example.homeassignment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,75 +42,37 @@ public class SearchActivity extends AppCompatActivity {
     public static ArrayList<String> overViewArr = new ArrayList<String>();
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
 
+    ListView listView;
+    ArrayList<String> months = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+    EditText etSearch;
+
     HashMap<String, String> Movies = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         final ArrayList<String> arr = new ArrayList<>();
-         new GetMovies().execute();
+        new GetMovies().execute();
 
-        SearchView searchView = (SearchView) findViewById(R.id.search); // inititate a search view
+        listView = findViewById(R.id.listView);
+        etSearch = findViewById(R.id.etSearch);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, titleArr);
+        listView.setAdapter(arrayAdapter);
+        etSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                Log.e("TAG", "titleArr: " + titleArr);
-                String lowerCase = titleArr.toString().toLowerCase();
-
-                 if(titleArr.contains(query)){
-
-                    Integer movieIndex = titleArr.indexOf(query);
-                     Log.e("TAG", "movieIndex: " + (movieIndex));
-                     TextView Popularity;
-                     Popularity = findViewById(R.id.popularityId);
-                     Popularity.setText("Popularity: " + popularityArr.get(movieIndex));
-
-                     TextView adult;
-                     adult = findViewById(R.id.adultId);
-                     adult.setText("Adult: " + adultArr.get(movieIndex));
-
-                     TextView vote;
-                     vote = findViewById(R.id.voteId);
-                     vote.setText("Average Vote: " + voteAvgArr.get(movieIndex));
-
-                     TextView voteC;
-                     voteC = findViewById(R.id.voteCId);
-                     voteC.setText("Vote: " + voteCountArr.get(movieIndex));
-
-                     TextView overView;
-                     overView = findViewById(R.id.OverViewId);
-                     overView.setText("Overview: " + overViewArr.get(movieIndex));
-
-                     TextView backdrop;
-                     backdrop = findViewById(R.id.backdropId);
-                     backdrop.setText("Back drop: " + backdropArr.get(movieIndex));
-
-                     TextView language;
-                     language = findViewById(R.id.languageId);
-                     language.setText("Language: " + languageArr.get(movieIndex));
-
-                     TextView origTitle;
-                     origTitle = findViewById(R.id.origTitleId);
-                     origTitle.setText("Original Title: " + origTitleArr.get(movieIndex));
-
-                     TextView video;
-                     video = findViewById(R.id.videoId);
-                     video.setText("Video: " + videoArr.get(movieIndex));
-
-                     TextView poster;
-                     poster = findViewById(R.id.posterId);
-                     poster.setText("Poster: " + posterArr.get(movieIndex));
-                }else{
-                    Toast.makeText(SearchActivity.this, "No Match found",Toast.LENGTH_LONG).show();
-                }
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
-            public boolean onQueryTextChange(String newText) {
-               // adapter.getFilter().filter(newText);
-                Log.e("TAG", "RM: yes: 2 +"+newText);
-                return false;
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                arrayAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
