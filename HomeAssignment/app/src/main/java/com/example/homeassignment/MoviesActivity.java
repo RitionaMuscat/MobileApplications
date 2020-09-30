@@ -1,6 +1,7 @@
 package com.example.homeassignment;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -131,33 +133,20 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
 
-/*        Button btnFavourite;
-        btnFavourite = findViewById(R.id.favouritesBTN);
-        btnFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Movies.put("popularity", popularityArr.get(movieIndex));
-                Movies.put("vote_count", voteCountArr.get(movieIndex));
-                Movies.put("video", videoArr.get(movieIndex));
-                Movies.put("poster_path", posterArr.get(movieIndex));
-                Movies.put("adult", adultArr.get(movieIndex));
-                Movies.put("backdrop_path", backdropArr.get(movieIndex));
-                Movies.put("original_language", languageArr.get(movieIndex));
-                Movies.put("original_title", origTitleArr.get(movieIndex));
-                Movies.put("title", selectedMovie);
-                Movies.put("vote_average", voteAvgArr.get(movieIndex));
-                Movies.put("overview", overViewArr.get(movieIndex));
-                Movies.put("release_date", releaseDateArr.get(movieIndex));
 
-                FavouritesArr.add(Movies);
 
-                Log.e("TAG", "Response from popularityArr: " + FavouritesArr);
-            }
-
-        });*/
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -166,6 +155,7 @@ public class MoviesActivity extends AppCompatActivity {
         menuItem.setVisible(false);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

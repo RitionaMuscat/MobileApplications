@@ -1,12 +1,14 @@
 package com.example.homeassignment;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,6 +59,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
