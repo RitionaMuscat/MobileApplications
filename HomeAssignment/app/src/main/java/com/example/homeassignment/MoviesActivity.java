@@ -52,7 +52,8 @@ public class MoviesActivity extends AppCompatActivity {
         if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().
                 heightPixels) {
             setContentView(R.layout.movies_land_activity);
-        } else {
+        }
+         else {
             setContentView(R.layout.movies_activity);
 
         }
@@ -145,7 +146,7 @@ public class MoviesActivity extends AppCompatActivity {
             setContentView(R.layout.movies_land_activity);
         } else {
             Toast.makeText(this, "Screen switched to Portrait mode", Toast.LENGTH_SHORT).show();
-
+            setContentView(R.layout.movies_activity);
             Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
         }
     }
