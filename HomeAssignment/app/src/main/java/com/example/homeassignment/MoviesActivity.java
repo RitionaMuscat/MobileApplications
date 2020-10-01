@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,15 +44,18 @@ public class MoviesActivity extends AppCompatActivity {
 
     HashMap<String, String> Movies = new HashMap<>();
 
-    // Write a message to the database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("favouriteMovie");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movies_activity);
+
+        if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().
+                heightPixels) {
+            setContentView(R.layout.movies_land_activity);
+        } else {
+            setContentView(R.layout.movies_activity);
+
+        }
 
         Intent intent = getIntent();
 
@@ -105,6 +109,7 @@ public class MoviesActivity extends AppCompatActivity {
                     overView = findViewById(R.id.OverView);
                     overView.setText("Overview: " + overViewArr.get(movieIndex));
 
+
                     TextView backdrop;
                     backdrop = findViewById(R.id.backdrop);
                     backdrop.setText("Back drop: " + backdropArr.get(movieIndex));
@@ -113,17 +118,13 @@ public class MoviesActivity extends AppCompatActivity {
                     language = findViewById(R.id.language);
                     language.setText("Language: " + languageArr.get(movieIndex));
 
-                    TextView origTitle;
-                    origTitle = findViewById(R.id.origTitle);
-                    origTitle.setText("Original Title: " + origTitleArr.get(movieIndex));
-
                     TextView video;
                     video = findViewById(R.id.video);
                     video.setText("Video: " + videoArr.get(movieIndex));
 
-/*                    TextView poster;
-                    poster = findViewById(R.id.poster);
-                    poster.setText("Poster: " + posterArr.get(movieIndex));*/
+                    TextView origTitle;
+                    origTitle = findViewById(R.id.origTitle);
+                    origTitle.setText("Original Title: " + origTitleArr.get(movieIndex));
                 }
             }
 
@@ -134,8 +135,6 @@ public class MoviesActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     @Override
@@ -143,10 +142,14 @@ public class MoviesActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "landscape", Toast.LENGTH_LONG).show();
+            setContentView(R.layout.movies_land_activity);
         } else {
+            Toast.makeText(this, "Screen switched to Portrait mode", Toast.LENGTH_SHORT).show();
+
             Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

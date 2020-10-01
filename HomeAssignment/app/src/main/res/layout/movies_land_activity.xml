@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/OverView"
+        android:layout_width="354dp"
+        android:layout_height="148dp"
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="serif"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/backdrop"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/OverView"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/origTitle"
+        android:layout_width="254dp"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@+id/voteC"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/vote"
+        app:layout_constraintTop_toBottomOf="@+id/voteC" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/vote"
+        android:layout_width="298dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/OverView"
+        android:layout_marginBottom="124dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/popularity"
+        android:layout_width="268dp"
+        android:layout_height="33dp"
+        android:layout_alignBottom="@+id/vote"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="148dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/origTitle" />
+
+    <TextView
+        android:id="@+id/adult"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:layout_alignBottom="@+id/vote"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/popularity"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vote" />
+
+    <TextView
+        android:id="@+id/backdrop"
+        android:layout_width="342dp"
+        android:layout_height="38dp"
+        android:layout_alignBottom="@+id/adult"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adult"
+        app:layout_constraintVertical_bias="0.435" />
+
+    <TextView
+        android:id="@+id/video"
+        android:layout_width="167dp"
+        android:layout_height="41dp"
+        android:layout_alignBottom="@+id/backdrop"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toEndOf="@+id/OverView"
+        app:layout_constraintTop_toBottomOf="@+id/language" />
+
+    <TextView
+        android:id="@+id/voteC"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
+        android:layout_alignBottom="@+id/video"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toEndOf="@+id/vote"
+        app:layout_constraintTop_toBottomOf="@+id/video" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
