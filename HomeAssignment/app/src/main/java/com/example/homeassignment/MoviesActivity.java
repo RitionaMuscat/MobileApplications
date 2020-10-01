@@ -40,9 +40,6 @@ public class MoviesActivity extends AppCompatActivity {
     ArrayList<String> voteAvgArr = new ArrayList<String>();
     ArrayList<String> overViewArr = new ArrayList<String>();
     ArrayList<String> releaseDateArr = new ArrayList<String>();
-    ArrayList<HashMap<String, String>> FavouritesArr = new ArrayList<HashMap<String, String>>();
-
-    HashMap<String, String> Movies = new HashMap<>();
 
 
     @Override
@@ -52,13 +49,10 @@ public class MoviesActivity extends AppCompatActivity {
         if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().
                 heightPixels) {
             setContentView(R.layout.movies_land_activity);
-        }
-         else {
+        } else {
             setContentView(R.layout.movies_activity);
 
         }
-
-        Intent intent = getIntent();
 
         final Spinner spnMovC = findViewById(R.id.spinner);
 
