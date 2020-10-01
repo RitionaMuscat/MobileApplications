@@ -53,7 +53,16 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+/*        setContentView(R.layout.activity_search);*/
+
+        if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().
+                heightPixels) {
+            setContentView(R.layout.activity_search_land);
+        } else {
+            setContentView(R.layout.activity_search);
+
+        }
+
         final ArrayList<String> arr = new ArrayList<>();
         new GetMovies().execute();
 

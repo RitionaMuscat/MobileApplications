@@ -12,24 +12,24 @@ import java.net.URL;
 public class HttpClient {
     private static final String TAG = HttpClient.class.getSimpleName();
 
-    public HttpClient(){}
+    public HttpClient() {
+    }
 
-    public String makeServiceCall(String reqUrl)
-    {
+    public String makeServiceCall(String reqUrl) {
         String response = null;
-            try {
-                URL url = new URL(reqUrl);
+        try {
+            URL url = new URL(reqUrl);
 
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
 
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                response  = convertStreamToString(in);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            response = convertStreamToString(in);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return response;
     }
 
