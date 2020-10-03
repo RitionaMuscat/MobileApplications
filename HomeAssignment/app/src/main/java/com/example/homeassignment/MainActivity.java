@@ -1,13 +1,26 @@
 package com.example.homeassignment;
 
+import android.Manifest;
+import android.app.KeyguardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.fingerprint.FingerprintManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +29,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,15 +43,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import static android.Manifest.*;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final int REQUEST_IMAGE_CAPTURE =  1;
     private AppBarConfiguration mAppBarConfiguration;
 
     ArrayList<HashMap<String, String>> MovieList = new ArrayList<HashMap<String, String>>();
-
+    HashMap<String, String> Movies = new HashMap<>();
     public static ArrayList<String> titleArr = new ArrayList<String>();
     public static ArrayList<String> popularityArr = new ArrayList<String>();
     public static ArrayList<String> voteCountArr = new ArrayList<String>();
@@ -50,12 +75,14 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> voteAvgArr = new ArrayList<String>();
     public static ArrayList<String> overViewArr = new ArrayList<String>();
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
-    HashMap<String, String> Movies = new HashMap<>();
+    Uri newPhotoUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -76,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
         new GetMovies().execute();
     }
 
@@ -86,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
@@ -124,8 +153,26 @@ public class MainActivity extends AppCompatActivity {
                 Intent i3 = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(i3);
                 return true;
+            case R.id.action_camera:
+/*                Intent i4 = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(i4);*/
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ImageView imgView = findViewById(R.id.imageView);
+            imgView.setImageBitmap(imageBitmap);
         }
     }
 
@@ -245,9 +292,7 @@ public class MainActivity extends AppCompatActivity {
                             } else if (id == R.id.nav_login) {
                                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(login);
-                            }
-                            else if (id == R.id.nav_search)
-                            {
+                            } else if (id == R.id.nav_search) {
                                 Intent search = new Intent(getApplicationContext(), SearchActivity.class);
                                 startActivity(search);
                             }
