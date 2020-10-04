@@ -3,6 +3,7 @@ package com.example.homeassignment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+    private static final int REQUEST_IMAGE_CAPTURE = 2 ;
 
     private GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
@@ -170,20 +172,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-//        MenuItem menuItem = menu.findItem(R.id.action_login);
-//        menuItem.setVisible(false);
-        return true;
-    }*/
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-
-        switch (item.getItemId()) {
+       switch (item.getItemId()) {
             case R.id.action_movies:
                 Intent i = new Intent(getApplicationContext(), MoviesActivity.class);
                 startActivity(i);
@@ -192,6 +184,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i1);
                 return true;
+           case R.id.action_camera:
+               Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+               startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+               return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
