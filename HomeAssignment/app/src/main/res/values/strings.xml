@@ -8,16 +8,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_movies">Movies</string>
-    <string name="title_activity_movie_2">MovieActivity_2</string>
-    <string name="title_activity_movie22">Movie2Activity2</string>
-    <string name="title_activity_test">testActivity</string>
-    <string name="title_activity_m">M</string>
-    <string name="server_client_id">805220540107-ui3di5an1d0f1rj0gilpb7duq958ksfr.apps.googleusercontent.com</string>
+    <string name="menu_camera">Camera</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_movies">Popular Movies</string>
+    <string name="menu_search">Search</string>
+    <string name="search_here">Search Here</string>
 
     <!-- Sign-in status messages -->
     <string name="signed_in_fmt">Signed in as: %s</string>
@@ -25,8 +20,7 @@
     <string name="signing_in">Signing inâ€¦</string>
     <string name="signed_out">Signed out</string>
     <string name="signed_in_err">"Error: please check logs."</string>
-
+    <string name="disconnect">Disconnect</string>
     <string name="sign_out">Sign Out</string>
 
-    <string name="auth">Authenticate with fingerprint</string>
 </resources>

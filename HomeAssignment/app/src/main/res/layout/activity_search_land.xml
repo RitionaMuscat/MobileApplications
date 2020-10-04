@@ -9,7 +9,7 @@
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search here"
+        android:hint="@string/search_here"
         app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.829"
