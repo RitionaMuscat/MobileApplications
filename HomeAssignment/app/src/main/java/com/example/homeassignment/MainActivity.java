@@ -30,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -46,8 +47,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -57,7 +61,8 @@ import static android.Manifest.*;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final int REQUEST_IMAGE_CAPTURE =  1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_TAKE_PHOTO = 2;
     private AppBarConfiguration mAppBarConfiguration;
 
     ArrayList<HashMap<String, String>> MovieList = new ArrayList<HashMap<String, String>>();
@@ -154,11 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i3);
                 return true;
             case R.id.action_camera:
-/*                Intent i4 = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivity(i4);*/
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -170,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-
             ImageView imgView = findViewById(R.id.imageView);
             imgView.setImageBitmap(imageBitmap);
         }
