@@ -27,7 +27,7 @@ import com.google.android.gms.tasks.Task;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-    private static final int REQUEST_IMAGE_CAPTURE = 2 ;
+    private static final int REQUEST_IMAGE_CAPTURE = 2;
 
     private GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
@@ -54,21 +54,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+
         // Set the dimensions of the sign-in button.
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
 
 
-
     }
+
     @Override
     public void onBackPressed() {
         Intent setIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(setIntent);
     }
 
-    @Override
+ @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -109,14 +110,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.w(TAG, "1. " + account.getDisplayName());
-            TextView txt = findViewById(R.id.text_home);
-            txt.setText(account.getDisplayName());
-
             // Signed in successfully, show authenticated UI.
             updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode() + e.getMessage());
             updateUI(null);
         }
     }
@@ -134,8 +132,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         updateUI(null);
-                        TextView txt = findViewById(R.id.text_home);
-                        txt.setText("Signed out");
                     }
                 });
     }

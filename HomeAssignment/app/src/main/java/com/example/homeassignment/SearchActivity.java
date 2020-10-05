@@ -44,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
 
     ListView listView;
-    ArrayList<String> months = new ArrayList<>();
+
     ArrayAdapter<String> arrayAdapter;
     EditText etSearch;
 
@@ -53,8 +53,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*        setContentView(R.layout.activity_search);*/
-
         if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().
                 heightPixels) {
             setContentView(R.layout.activity_search_land);

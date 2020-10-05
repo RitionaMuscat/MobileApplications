@@ -22,5 +22,6 @@
     <string name="signed_in_err">"Error: please check logs."</string>
     <string name="disconnect">Disconnect</string>
     <string name="sign_out">Sign Out</string>
+    <string name="server_client_id">805220540107-ui3di5an1d0f1rj0gilpb7duq958ksfr.apps.googleusercontent.com</string>
 
 </resources>
