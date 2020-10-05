@@ -2,6 +2,7 @@ package com.example.homeassignment;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -131,6 +132,14 @@ public class MoviesActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(setIntent);
+    }
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

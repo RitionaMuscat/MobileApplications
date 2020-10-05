@@ -63,6 +63,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
     @Override
+    public void onBackPressed() {
+        Intent setIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(setIntent);
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
