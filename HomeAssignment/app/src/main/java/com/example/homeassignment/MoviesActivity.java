@@ -167,7 +167,6 @@ public class MoviesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-
         switch (item.getItemId()) {
             case R.id.action_login:
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);

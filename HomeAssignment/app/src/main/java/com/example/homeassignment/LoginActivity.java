@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         // Views
-        mStatusTextView = findViewById(R.id.status);
+       mStatusTextView = findViewById(R.id.status);
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
 
-
     }
 
     @Override
@@ -69,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(setIntent);
     }
 
- @Override
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -78,13 +77,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "portrait", Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem menuItem = menu.findItem(R.id.action_login);
         menuItem.setVisible(false);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -98,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -153,7 +153,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
-
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
@@ -177,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-       switch (item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_movies:
                 Intent i = new Intent(getApplicationContext(), MoviesActivity.class);
                 startActivity(i);
@@ -186,10 +185,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i1);
                 return true;
-           case R.id.action_camera:
-               Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-               startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-               return true;
+            case R.id.action_camera:
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
