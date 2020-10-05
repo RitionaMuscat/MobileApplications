@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
                 heightPixels) {
             setContentView(R.layout.activity_search_land);
         } else {
-            setContentView(R.layout.activity_search);
+            setContentView(R.layout.search);
 
         }
 

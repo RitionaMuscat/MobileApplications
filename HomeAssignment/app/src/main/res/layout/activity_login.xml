@@ -11,15 +11,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.239" />
 
     <LinearLayout
         android:id="@+id/sign_out_and_disconnect"
-        android:layout_width="371dp"
-        android:layout_height="60dp"
+        android:layout_width="370dp"
+        android:layout_height="52dp"
         android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:paddingLeft="16dp"

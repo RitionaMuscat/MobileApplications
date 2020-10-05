@@ -288,6 +288,10 @@ public class MainActivity extends AppCompatActivity {
                             } else if (id == R.id.nav_search) {
                                 Intent search = new Intent(getApplicationContext(), SearchActivity.class);
                                 startActivity(search);
+                            }else if(id==R.id.nav_camera)
+                            {
+                                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                             }
                             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                             return true;
