@@ -1,68 +1,38 @@
 package com.example.homeassignment;
 
-import android.Manifest;
-import android.app.KeyguardManager;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.hardware.biometrics.BiometricManager;
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CancellationSignal;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import static android.Manifest.*;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int REQUEST_TAKE_PHOTO = 2;
     private AppBarConfiguration mAppBarConfiguration;
 
     ArrayList<HashMap<String, String>> MovieList = new ArrayList<HashMap<String, String>>();
@@ -80,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> voteAvgArr = new ArrayList<String>();
     public static ArrayList<String> overViewArr = new ArrayList<String>();
     public static ArrayList<String> releaseDateArr = new ArrayList<String>();
-    Uri newPhotoUri;
 
 
     @Override
@@ -288,8 +257,7 @@ public class MainActivity extends AppCompatActivity {
                             } else if (id == R.id.nav_search) {
                                 Intent search = new Intent(getApplicationContext(), SearchActivity.class);
                                 startActivity(search);
-                            }else if(id==R.id.nav_camera)
-                            {
+                            } else if (id == R.id.nav_camera) {
                                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                             }

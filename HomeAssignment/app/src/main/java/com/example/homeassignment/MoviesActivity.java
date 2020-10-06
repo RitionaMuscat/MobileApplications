@@ -2,7 +2,6 @@ package com.example.homeassignment;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,19 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MoviesActivity extends AppCompatActivity {
     String selectedMovie = "";
@@ -121,6 +117,15 @@ public class MoviesActivity extends AppCompatActivity {
                     TextView origTitle;
                     origTitle = findViewById(R.id.origTitle);
                     origTitle.setText("Original Title: " + origTitleArr.get(movieIndex));
+
+                    ImageView img;
+                    img = findViewById(R.id.imageView2);
+
+                 Picasso.get().load("https://image.tmdb.org/t/p/w300"+posterArr.get(movieIndex)).into(img);
+
+                    Picasso.get().setLoggingEnabled(true);
+
+
                 }
             }
 

@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         // Views
-       mStatusTextView = findViewById(R.id.status);
+        mStatusTextView = findViewById(R.id.status);
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -81,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem menuItem = menu.findItem(R.id.action_login);
         menuItem.setVisible(false);
