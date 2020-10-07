@@ -68,6 +68,7 @@ public class SearchActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.etSearch);
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, titleArr);
+        arrayAdapter.notifyDataSetChanged();
         listView.setAdapter(arrayAdapter);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
